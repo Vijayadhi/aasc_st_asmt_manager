@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Faculty</title>
+</head>
+<body>
+{% if messages %}
+  <ul>
+    {% for message in messages %}
+      <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+<form method="post">
+    {% csrf_token %}
+    <input type="email" name="email" placeholder="Email"/>
+    <input type="text" name="user_name" placeholder="UserName"/>
+    <input type="number" name="mobile" placeholder="Mobile Number"/>
+    <input type="date" name="date" placeholder="Joining Date "/>
+    <input type="text" name="major_study" placeholder="Major Group Studied"/>
+<!--    <input type="password" name="password" placeholder="Enter password"/>-->
+<!--    <input type="password" name="confirm_password" placeholder="Confirm password"/>-->
+    <input type="submit" value="create"/>
+</form>
+</body>
+</html>
