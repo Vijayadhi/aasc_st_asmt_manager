@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Add Faculty</title>
-</head>
-<body>
+{% extends "clg_admin/admin_index.html" %}
+{% load static %}
+{% block title %}
+Add Faculty
+{% endblock %}
+{% block wrapper %}
 {% if messages %}
   <ul>
     {% for message in messages %}
@@ -12,16 +11,17 @@
     {% endfor %}
   </ul>
 {% endif %}
+
 <form method="post">
     {% csrf_token %}
-    <input type="email" name="email" placeholder="Email"/>
-    <input type="text" name="user_name" placeholder="UserName"/>
-    <input type="number" name="mobile" placeholder="Mobile Number"/>
-    <input type="date" name="date" placeholder="Joining Date "/>
-    <input type="text" name="major_study" placeholder="Major Group Studied"/>
+    <input type="email" name="email" placeholder="Email" class="input-group"/>
+    <input type="text" name="user_name" placeholder="UserName" class="input-group"/>
+    <input type="number" name="mobile" placeholder="Mobile Number" class="input-group"/>
+    <input type="date" name="date" placeholder="Joining Date " class="input-group"/>
+    <input type="text" name="major_study" placeholder="Major Group Studied" class="input-group"/>
 <!--    <input type="password" name="password" placeholder="Enter password"/>-->
 <!--    <input type="password" name="confirm_password" placeholder="Confirm password"/>-->
     <input type="submit" value="create"/>
 </form>
-</body>
-</html>
+<a href="/logout">Logout</a>
+{% endblock %}

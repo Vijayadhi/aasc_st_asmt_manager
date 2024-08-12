@@ -8,7 +8,7 @@ from django.utils.translation import gettext_lazy as _
 # Create your models here.
 
 class CustomUser(AbstractUser):
-    username = models.CharField(max_length=12)
+    username = models.CharField(max_length=120)
     email = models.EmailField(_('email address'), unique=True)
     mobile_no = models.CharField(max_length=12, null=True, blank=True)
     blood_group = models.CharField(max_length=12, null=True, blank=True)

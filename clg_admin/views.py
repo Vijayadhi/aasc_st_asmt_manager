@@ -35,3 +35,9 @@ def add_faculty(request):
         return HttpResponse("User created successfully")
 
     return render(request, 'clg_admin/add_faculty.html')
+
+def admin_index(request):
+    return render(request, 'clg_admin/admin_index.html')
+
+def add_department(request):
+    return render(request, "clg_admin/add_department.html")

@@ -1,8 +1,9 @@
 from django.contrib import admin, messages
 
-from .models import Faculty
+from .models import Faculty, Subjects, Department, FacultyAdmin, Semester, Regulation, AssessmentType
 
-class FacultyAdmin(admin.ModelAdmin):
+
+class Faculty_Admin(admin.ModelAdmin):
     list_display = ['user', 'faculty_type', 'joining_date']
     search_fields = ['user__username', 'department__name']
 
@@ -18,4 +19,11 @@ class FacultyAdmin(admin.ModelAdmin):
         obj.save()
         messages.success(request, f'{obj.user.username} has been updated successfully')
 
-admin.site.register(Faculty, FacultyAdmin)
+admin.site.register(Faculty, Faculty_Admin)
+admin.site.register(Subjects)
+admin.site.register(Department)
+admin.site.register(FacultyAdmin)
+admin.site.register(Semester)
+admin.site.register(Regulation)
+admin.site.register(AssessmentType)
+

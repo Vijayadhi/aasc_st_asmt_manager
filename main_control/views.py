@@ -35,13 +35,31 @@ def user_logout(request):
     logout(request)
     return redirect('/login')
 
+def find_user_group(email):
+    user = CustomUser.objects.get(email=email)
+    if user.groups.filter(name='College Admin').exists():
+        return "clg_admin/admin_index"
+    elif user.groups.filter(name='Department Admin').exists():
+        return "dept_admin/dpt_admin_index"
+    elif user.groups.filter(name='Department Faculty').exists():
+        return "department faculty"
+    elif user.groups.filter(name='Student').exists():
+        return "student"
+
+
 def user_login(request):
     if request.method == 'POST':
-        username = request.POST.get('email')
+        username = request.POST.get('email')        # if
         password = request.POST.get('password')
-        user = authenticate(username=username, password=password)
-        print(user)
-        if user is not None:
-            login(request, user)
-            return HttpResponse('Logged In')
+        try:
+            if username and password is not None:
+                user = authenticate(username=username, password=password)
+                user_group = find_user_group(username)
+                print(username)
+                print(user_group)
+                if user is not None:
+                    login(request, user)
+                return redirect(f'{user_group}')
+        except:
+            raise ValueError("Enter Valid Username or Password")
     return render(request, 'backend/login.html')

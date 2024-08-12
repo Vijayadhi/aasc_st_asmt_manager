@@ -66,7 +66,7 @@ class Semester(models.Model):
     class Meta:
         db_table = 'semester'
 
-class Regulation(models.Model):
+class Regulation(models.Model): #This class is added to define the regulations from the university for the courses based on subject. Ex. CBCS-2019
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=200, null=True, blank=True)
 
