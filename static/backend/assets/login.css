@@ -1,0 +1,19 @@
+.login {
+  min-height: 100vh;
+}
+
+.bg-image {
+  background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg.lovepik.com%2Fbackground%2F20211021%2Flarge%2Flovepik-red-business-technology-background-image_401457715.jpg&f=1&nofb=1&ipt=ca384e1f327cb9f6fc6b41f5016c429213aaad398e99d369afbb02ea3e1d6fd4&ipo=images');
+  background-size: cover;
+  background-position: center;
+}
+
+.login-heading {
+  font-weight: 300;
+}
+
+.btn-login {
+  font-size: 0.9rem;
+  letter-spacing: 0.05rem;
+  padding: 0.75rem 1rem;
+}
