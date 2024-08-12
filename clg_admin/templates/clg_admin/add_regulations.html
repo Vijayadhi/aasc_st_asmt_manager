@@ -1,7 +1,7 @@
 {% extends "clg_admin/admin_index.html" %}
 {% load static %}
 {% block title %}
-Add Department
+Add Regulations
 {% endblock %}
 {% block wrapper %}
 {% if messages %}
@@ -16,5 +16,6 @@ Add Department
 <form method="post">
     {% csrf_token %}
     <input type="text" name="regulation_name" id="" placeholder="Regulation Name">
-        <button type="submit">Add Regulations</button></form>
+    <button type="submit">Add Regulations</button>
+</form>
 {% endblock %}

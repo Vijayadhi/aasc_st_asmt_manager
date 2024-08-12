@@ -5,11 +5,11 @@ Add Faculty
 {% endblock %}
 {% block wrapper %}
 {% if messages %}
-  <ul>
+<ul>
     {% for message in messages %}
-      <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
     {% endfor %}
-  </ul>
+</ul>
 {% endif %}
 
 <form method="post">
@@ -19,9 +19,9 @@ Add Faculty
     <input type="number" name="mobile" placeholder="Mobile Number" class="input-group"/>
     <input type="date" name="date" placeholder="Joining Date " class="input-group"/>
     <input type="text" name="major_study" placeholder="Major Group Studied" class="input-group"/>
-<!--    <input type="password" name="password" placeholder="Enter password"/>-->
-<!--    <input type="password" name="confirm_password" placeholder="Confirm password"/>-->
-    <input type="submit" value="create"/>
+    <!--    <input type="password" name="password" placeholder="Enter password"/>-->
+    <!--    <input type="password" name="confirm_password" placeholder="Confirm password"/>-->
+    <button type="submit">Add Regulations</button>
 </form>
 <a href="/logout">Logout</a>
 {% endblock %}

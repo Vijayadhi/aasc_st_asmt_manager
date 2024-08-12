@@ -5,18 +5,19 @@ Add Department
 {% endblock %}
 {% block wrapper %}
 {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
+<ul>
+    {% for message in messages %}
+    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+    {% endfor %}
 
-        </ul>
+</ul>
 {% endif %}
 <h1>Add Department Page</h1>
 <form method="post">
     {% csrf_token %}
     <input type="text" name="dpt_name" id="" placeholder="Department Name">
     <textarea name="dpt_desc" placeholder="Department Description"></textarea>
-    <input type="submit" value="Create">
+    <button type="submit">Add Department</button>
+</form>
 </form>
 {% endblock %}

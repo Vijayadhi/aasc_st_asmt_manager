@@ -1,11 +1,8 @@
-from audioop import error
-from calendar import month
-
 from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
-from clg_admin.models import Faculty, Department, Regulation
+from clg_admin.models import Faculty, Department, Regulation, Subjects
 from main_control.views import createUser
 
 
@@ -60,7 +57,7 @@ def add_department(request):
 
         success_message = f'Department "{dpt_name}" has been successfully created.'
         messages.success(request, success_message)
-        return redirect('/add_department')  # Redirect to an appropriate view after success
+        return redirect('add_department')  # Redirect to an appropriate view after success
 
     return render(request, "clg_admin/add_department.html")
 
@@ -83,12 +80,35 @@ def add_regulations(request):
             return render(request, "clg_admin/add_regulations.html", {'error_message': error_message})
 
         # Create a new department if it doesn't exist
-        new_dregulation = Regulation(name=regulation_name)
-        new_dregulation.save()
+        new_regulation = Regulation(name=regulation_name)
+        new_regulation.save()
 
         success_message = f'Regulation "{regulation_name}" has been successfully created.'
         messages.success(request, success_message)
-        return render(request, "clg_admin/add_regulations.html")  # Redirect to an appropriate view after success
+        return redirect('add_regulations')
 
 
     return render(request, "clg_admin/add_regulations.html")
+
+
+def add_subject(request):
+    if request.method == "POST":
+        sub_name = request.POST.get('sub_name')
+        regulation_id = request.POST.get('regulation')
+        regulation = Regulation.objects.get(id=regulation_id)
+
+        # Save the new subject here...
+        if sub_name and regulation_id == "":
+            error_message = f'Error: Subject Name and the Regulation should not empty.'
+            messages.error(request, error_message)
+            return render(request, "clg_admin/add_subjects.html", {'error_message': error_message})
+
+        # Add success message
+        new_subjects = Subjects(name=sub_name, regulation=regulation)
+        new_subjects.save()
+        messages.success(request, 'Subject created successfully!')
+        return redirect('add_subject')
+        # return render(request, 'clg_admin/add_subjects.html')  # Or any other view
+
+    regulations = Regulation.objects.all()
+    return render(request, 'clg_admin/add_subjects.html', {'regulations': regulations})
