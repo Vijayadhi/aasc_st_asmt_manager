@@ -9,14 +9,12 @@ Add Department
             {% for message in messages %}
                 <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
             {% endfor %}
-
+            
         </ul>
 {% endif %}
-<h1>Add Department Page</h1>
+<h1>Add Regulations Page</h1>
 <form method="post">
     {% csrf_token %}
-    <input type="text" name="dpt_name" id="" placeholder="Department Name">
-    <textarea name="dpt_desc" placeholder="Department Description"></textarea>
-    <input type="submit" value="Create">
-</form>
+    <input type="text" name="regulation_name" id="" placeholder="Regulation Name">
+        <button type="submit">Add Regulations</button></form>
 {% endblock %}
