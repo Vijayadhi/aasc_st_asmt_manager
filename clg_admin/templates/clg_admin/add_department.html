@@ -9,7 +9,6 @@ Add Department
     {% for message in messages %}
     <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
     {% endfor %}
-
 </ul>
 {% endif %}
 <h1>Add Department Page</h1>
@@ -19,5 +18,24 @@ Add Department
     <textarea name="dpt_desc" placeholder="Department Description"></textarea>
     <button type="submit">Add Department</button>
 </form>
-</form>
+<table class="table">
+    <thead>
+    <tr>
+        <th>S.no</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for objects in departments %}
+    <tr>
+        <td>{{objects.id}}</td>
+        <td>{{objects.name}}</td>
+        <td>{{objects.description}}</td>
+                <td><button><i class="fa-solid fa-pen"></i></button> &nbsp; <button><i class="fa-solid fa-trash"></i></button></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
 {% endblock %}

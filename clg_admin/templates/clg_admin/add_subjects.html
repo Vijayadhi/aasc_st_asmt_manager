@@ -27,4 +27,25 @@ Manage Subjects
     <button type="submit">Create</button>
 
 </form>
+<br>
+<table class="table">
+    <thead>
+    <tr>
+        <th>S.no</th>
+        <th>Name</th>
+        <th>Regulation</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for objects in subjects %}
+    <tr>
+        <td>{{objects.id}}</td>
+        <td>{{objects.name}}</td>
+        <td>{{objects.regulation}}</td>
+                <td><button><i class="fa-solid fa-pen"></i></button> &nbsp; <button><i class="fa-solid fa-trash"></i></button></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
 {% endblock %}

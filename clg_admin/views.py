@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
-from clg_admin.models import Faculty, Department, Regulation, Subjects
+from clg_admin.models import Faculty, Department, Regulation, Subjects, FacultyAdmin
 from main_control.views import createUser
 
 
@@ -28,16 +28,18 @@ def add_faculty(request):
             joining_date=date
         )
         add_faculty_data.save()
-        print(mobile_no, user)
-        return HttpResponse("User created successfully")
 
-    return render(request, 'clg_admin/add_faculty.html')
+        success_message = f'User "{username}" has been successfully created.'
+        messages.success(request, success_message)
+        return redirect('add_faculty')
+    return render(request, 'clg_admin/add_faculty.html',)
 
 def admin_index(request):
     return render(request, 'clg_admin/admin_index.html')
 
 
 def add_department(request):
+    departments = Department.objects.all()
     if request.method == "POST":
         dpt_name = request.POST.get('dpt_name')
         dpt_desc = request.POST.get('dpt_desc')
@@ -59,7 +61,14 @@ def add_department(request):
         messages.success(request, success_message)
         return redirect('add_department')  # Redirect to an appropriate view after success
 
-    return render(request, "clg_admin/add_department.html")
+    return render(request, "clg_admin/add_department.html", {"departments": departments})
+def manage_department(request):
+    department = Department.objects.all()
+    dpt_faculties = Faculty.objects.filter(faculty_type="Department Staff")
+    dpt_admin = FacultyAdmin.objects.all()
+    context = {'departments': department, 'dpt_faculties': dpt_faculties, 'dpt_admin': dpt_admin}
+    return render(request, 'clg_admin/manage_department.html', context)
+
 
 def add_regulations(request):
     if request.method == "POST":
@@ -87,8 +96,8 @@ def add_regulations(request):
         messages.success(request, success_message)
         return redirect('add_regulations')
 
-
-    return render(request, "clg_admin/add_regulations.html")
+    regulations = Regulation.objects.all()
+    return render(request, "clg_admin/add_regulations.html", {'regulations': regulations})
 
 
 def add_subject(request):
@@ -111,4 +120,10 @@ def add_subject(request):
         # return render(request, 'clg_admin/add_subjects.html')  # Or any other view
 
     regulations = Regulation.objects.all()
-    return render(request, 'clg_admin/add_subjects.html', {'regulations': regulations})
+    subjects = Subjects.objects.all()
+    context = {'regulations': regulations, 'subjects': subjects}
+    return render(request, 'clg_admin/add_subjects.html', context)
+
+
+def test_index(request):
+    return render(request, 'clg_admin/test.html')

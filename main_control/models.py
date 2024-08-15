@@ -21,3 +21,24 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.username
 
+    def get_model_perms(self, request):
+        """
+        Return empty perms dict for users who are not in a specific group.
+        """
+        perms = super().get_model_perms(request)
+
+        # Custom logic based on user's group
+        if request.user.groups.filter(name='CollegeAdmin').exists():
+            self.verbose_name = _('Faculty Member (College Admin)')
+            self.verbose_name_plural = _('Faculty Members (College Admin)')
+        elif request.user.groups.filter(name='DepartmentAdmin').exists():
+            self.verbose_name = _('Faculty Member (Dept Admin)')
+            self.verbose_name_plural = _('Faculty Members (Dept Admin)')
+        else:
+            perms = {}  # Hide the model completely if the user doesn't belong to these groups
+
+        return perms
+
+    class Meta:
+        verbose_name = _('Faculty Member')
+        verbose_name_plural = _('Faculty')

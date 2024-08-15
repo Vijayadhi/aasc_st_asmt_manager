@@ -1,0 +1,61 @@
+{% extends "clg_admin/admin_index.html" %}
+{% load static %}
+{% block title %}
+Manage Departments
+{% endblock %}
+{% block wrapper %}
+{% if messages %}
+<ul>
+    {% for message in messages %}
+    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<h1>Manage Departments</h1>
+<button class="btn" onclick="window.location.href='/clg_admin/add_department'">
+    <i class="fa-solid fa-plus" style="text-align: right"></i> Add Department
+</button>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>S.no</th>
+        <th>Department Name</th>
+        <th>HOD Name</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>#</td>
+        <td><select name="department" id="department" required>
+            <option value="" disabled selected>Select Department</option>
+            {% for department in departments %}
+            <option value="{{ department.id }}">{{ department.name }}</option>
+            {% endfor %}
+        </select>
+        </td>
+        <td><select name="dpt_faculties" id="dpt_faculties" required>
+            <option value="" disabled selected>Select Faculty</option>
+            {% for faculty in dpt_faculties %}
+            <option value="{{ faculty.id }}">{{ faculty.user.username }}</option>
+            {% endfor %}
+        </select>
+        </td>
+        <td>
+            <button class="btn"><i class="fa-solid fa-user-plus"></i> Add HOD</button>
+        </td>
+
+    </tr>
+    {% for objects in dpt_admin %}
+    <tr>
+        <td>{{objects.id}}</td>
+        <td>{{objects.department.name}}</td>
+        <td>{{objects.dpt_admin.user.username}}</td>
+        <td><button><i class="fa-solid fa-pen"></i></button> &nbsp; <button><i class="fa-solid fa-trash"></i></button></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}

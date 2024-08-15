@@ -12,10 +12,34 @@ Add Regulations
             
         </ul>
 {% endif %}
+
+
 <h1>Add Regulations Page</h1>
+<!--{% include "clg_admin/search.html" %}-->
+
 <form method="post">
     {% csrf_token %}
     <input type="text" name="regulation_name" id="" placeholder="Regulation Name">
     <button type="submit">Add Regulations</button>
 </form>
+<br>
+<table class="table">
+    <thead>
+    <tr>
+        <th>S.no</th>
+        <th>Name</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for objects in regulations %}
+    <tr>
+        <td>{{objects.id}}</td>
+        <td>{{objects.name}}</td>
+        <td><button><i class="fa-solid fa-pen"></i></button> &nbsp; <button><i class="fa-solid fa-trash"></i></button></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
 {% endblock %}
