@@ -24,5 +24,8 @@ class CustomUserCreationForm(UserCreationForm):
     # fields = '__all__'
 
 class CustomUserChangeForm(UserChangeForm):
+    from django.forms.widgets import DateInput
     model = CustomUser
-    fields = ('email', 'username', 'mobile_no')
+    fields = '__all__'
+
+    # fields = ('email', 'username', 'mobile_no')

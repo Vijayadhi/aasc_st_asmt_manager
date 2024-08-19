@@ -17,10 +17,10 @@ class Faculty(models.Model):
     Faculty_Choices = [
         ('Department Admin', 'Department Admin'),
         ('Department Staff', 'Department Staff'),
+        ('Class Tutor', 'Class Tutor'),
     ]
     major_study = models.CharField(max_length=200, null=True, blank=True)
     faculty_type = models.CharField(max_length=20, choices=Faculty_Choices, default='Department Staff')
-    photo = models.ImageField(upload_to='media/faculty/%Y/%m/%d', null=True, blank=True)
 
     def __str__(self):
         return self.user.username + ' - ' + self.faculty_type
@@ -43,8 +43,8 @@ class Department(models.Model):
 
 class FacultyAdmin(models.Model):
     id = models.BigAutoField(primary_key=True)
-    # department = models.ForeignKey(Department, on_delete=models.CASCADE, unique=True)
-    department = models.OneToOneField(Department, on_delete=models.CASCADE)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    # department = models.OneToOneField(Department, on_delete=models.CASCADE)
     dpt_admin = models.OneToOneField(Faculty, on_delete=models.CASCADE)
     date_appointed = models.DateField()
 
@@ -53,12 +53,13 @@ class FacultyAdmin(models.Model):
 
     class Meta:
         db_table = 'faculty_admin'
+        unique_together = (('dpt_admin', 'department'),)
 
 @receiver(post_save, sender=FacultyAdmin)
 def assign_groups(sender, instance, created, **kwargs):
     if created:
         # Replace 'your_group_name' with the actual group names you want to assign
-        group_names = ['FacultyAdmin']  # List of group names to be assigned
+        group_names = ['FacultyAdmin']  # Lis   t of group names to be assigned
         faculty_instance = instance.dpt_admin
         faculty_instance.faculty_type = 'Department Admin'
         user = instance.dpt_admin.user  # Assuming `dpt_admin` is a `User` instance
