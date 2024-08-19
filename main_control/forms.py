@@ -11,7 +11,7 @@ class CustomUserCreationForm(UserCreationForm):
                                 help_text="Leave blank to use the default password.")
 
     model = CustomUser
-    fields = ('email', 'username', 'mobile_no')
+    fields = ('email', 'name', 'mobile_no')
 
     def save(self, commit=True):
         user = super().save(commit=False)
@@ -24,5 +24,8 @@ class CustomUserCreationForm(UserCreationForm):
     # fields = '__all__'
 
 class CustomUserChangeForm(UserChangeForm):
+    from django.forms.widgets import DateInput
     model = CustomUser
-    fields = ('email', 'username', 'mobile_no')
+    fields = '__all__'
+
+    # fields = ('email', 'username', 'mobile_no')

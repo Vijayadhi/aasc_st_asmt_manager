@@ -53,6 +53,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # 'main_control.middleware.AdminModelMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -141,7 +143,7 @@ AUTH_USER_MODEL = 'main_control.CustomUser'
 
 JAZZMIN_SETTINGS  = {
     "site_title": "AASC-ST-ASMT-MANGER",
-    "site_header": "AASC-MANGER",
+    "site_header": "AASC-MANaGER",
     "site_logo": "backend/assets/img/achariya.png",
     # "custom_links": {
     #     "clg_admin": [{
@@ -151,4 +153,11 @@ JAZZMIN_SETTINGS  = {
     #         # "permissions": ["faculty.view_faculty"]
     #     }]
     # },
+    "changeform_format": "carousel",
+    # "usermenu_links": [
+    #     {"name": "Support", "url": "https://github.com/farridav/django-jazzmin/issues", "new_window": True},
+    #     {"model": "auth.user"}
+    # ],
+
+
 }
