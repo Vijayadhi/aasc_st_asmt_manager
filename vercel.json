@@ -1,21 +1,5 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "aasc_st_asmt_manger/config/wsgi.py",
-      "use": "@vercel/python",
-      "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
-    },
-    {
-      "src": "build_files.sh",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "staticfiles",
-         "maxLambdaSize": "10mb",
-        "runtime":"python3.11"
-      }
-    }
-  ],
   "routes": [
     {
       "src": "/static/(.*)",
@@ -23,7 +7,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "aasc_st_asmt_manger/config/wsgi.py"
+      "dest": "aasc_st_asmt_manager/config/wsgi.py"
     }
   ]
 }
