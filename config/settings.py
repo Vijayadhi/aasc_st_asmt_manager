@@ -27,8 +27,9 @@ DEBUG = True
 ALLOWED_HOSTS = [
 
     # '192.168.22.168'
-    '.vercel.app',
-    '.now.sh'
+    # '.vercel.app',
+    # '.now.sh'
+    'aasc-st-asmt-manager.onrender.com'
 ]
 
 # Application definition
