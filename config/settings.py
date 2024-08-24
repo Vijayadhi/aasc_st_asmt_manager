@@ -29,7 +29,10 @@ ALLOWED_HOSTS = [
     # '192.168.22.168'
     # '.vercel.app',
     # '.now.sh'
-    'aasc-st-asmt-manager.onrender.com'
+    'aasc-st-asmt-manager.onrender.com',
+    '35.160.120.126',
+    '44.233.151.27',
+    '34.211.200.85'
 ]
 
 # Application definition
