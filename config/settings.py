@@ -139,6 +139,12 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",  # Change this to a different directory, not the one used in STATIC_ROOT
 ]
 
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://aasc-st-asmt-manager.onrender.com',
+]
+
+
 # Directory where Django will collect static files for production
 # STATIC_ROOT = BASE_DIR / 'static'  # This should be different from any in STATICFILES_DIRS
 
