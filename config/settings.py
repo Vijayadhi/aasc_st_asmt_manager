@@ -32,7 +32,8 @@ ALLOWED_HOSTS = [
     'aasc-st-asmt-manager.onrender.com',
     '35.160.120.126',
     '44.233.151.27',
-    '34.211.200.85'
+    '34.211.200.85',
+    '0.0.0.0/0'
 ]
 
 # Application definition
