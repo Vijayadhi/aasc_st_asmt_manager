@@ -151,43 +151,43 @@ class CustomUserAdmin(UserAdmin, admin.ModelAdmin):
         #     faculty_group, _ = Group.objects.get_or_create(name='Faculty')
         #     obj.groups.add(faculty_group)
 
-    # def get_queryset(self, request):
-    #     queryset = super().get_queryset(request)
-    #     current_user = request.user
-    #
-    #     # Create a queryset for the current user
-    #     user_in_queryset = queryset.filter(id=current_user.id)
-    #
-    #     if current_user.groups.filter(name='College Admin').exists():
-    #         # Show users in the Faculty group
-    #         faculty_group = Group.objects.get(name='Faculty')
-    #         queryset = queryset.filter(groups=faculty_group)
-    #
-    #     elif current_user.groups.filter(name='FacultyAdmin').exists():
-    #         # Show users in the Faculty group
-    #         faculty_group = Group.objects.get(name='Faculty')
-    #         queryset = queryset.filter(groups=faculty_group)
-    #
-    #     elif current_user.groups.filter(name='Class Tutor').exists():
-    #         # Show users in the Student group
-    #         student_group = Group.objects.get(name='Student')
-    #         queryset = queryset.filter(groups=student_group)
-    #
-    #     elif current_user.groups.filter(name='Faculty').exists():
-    #         # Show users in the Student group
-    #         student_group = Group.objects.get(name='Student')
-    #         queryset = queryset.filter(groups=student_group)
-    #
-    #     else:
-    #         # If the user does not belong to any of the specified groups
-    #         queryset = queryset.none()
-    #
-    #     # Ensure the current user is included only once
-    #     queryset = (queryset | user_in_queryset).distinct()
-    #
-    #     return queryset
-    #
-    #     # def is_current_user(self, obj):
+    def get_queryset(self, request):
+        queryset = super().get_queryset(request)
+        current_user = request.user
+
+        # Create a queryset for the current user
+        user_in_queryset = queryset.filter(id=current_user.id)
+
+        if current_user.groups.filter(name='College Admin').exists():
+            # Show users in the Faculty group
+            faculty_group = Group.objects.get(name='Faculty')
+            queryset = queryset.filter(groups=faculty_group)
+
+        elif current_user.groups.filter(name='FacultyAdmin').exists():
+            # Show users in the Faculty group
+            faculty_group = Group.objects.get(name='Faculty')
+            queryset = queryset.filter(groups=faculty_group)
+
+        elif current_user.groups.filter(name='Class Tutor').exists():
+            # Show users in the Student group
+            student_group = Group.objects.get(name='Student')
+            queryset = queryset.filter(groups=student_group)
+
+        elif current_user.groups.filter(name='Faculty').exists():
+            # Show users in the Student group
+            student_group = Group.objects.get(name='Student')
+            queryset = queryset.filter(groups=student_group)
+
+        else:
+            # If the user does not belong to any of the specified groups
+            queryset = queryset.none()
+
+        # Ensure the current user is included only once
+        queryset = (queryset | user_in_queryset).distinct()
+
+        return queryset
+
+        # def is_current_user(self, obj):
 
     def is_current_user(self, obj):
         request = self._get_request()  # Retrieve the request object

@@ -1,116 +1,141 @@
-{% extends 'backend/index.html' %}
-{% load static %}
-{% block sidebar%}
-<div id="layoutSidenav_nav">
-    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-        <div class="sb-sidenav-menu">
-            <div class="nav">
-                <div class="sb-sidenav-menu-heading">Core</div>
-                <a class="nav-link" href="index.html">
-                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                    Dashboard
-                </a>
-                <div class="sb-sidenav-menu-heading">Faculty</div>
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts"
-                   aria-expanded="false" aria-controls="collapseLayouts">
-                    <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
-                    Manage Faculty
-                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                </a>
-                <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
-                     data-bs-parent="#sidenavAccordion">
-                    <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="/clg_admin/add_faculty">Faculty List</a>
-                        <a class="nav-link" href="layout-static.html">Manage Department Admins</a>
-<!--                        <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>-->
-                    </nav>
-                </div>
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
-                   aria-expanded="false" aria-controls="collapsePages">
-                    <!--                    <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>-->
-                    <div class="sb-nav-link-icon"><i class="fa-solid fa-graduation-cap"></i></i></div>
-                    Manage Academic
-                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                </a>
-                <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
-                     data-bs-parent="#sidenavAccordion">
-                    <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+<!--{% extends 'backend/index.html' %}-->
+<!--{% load static %}-->
+<!--{% block sidebar%}-->
+<!--<div id="layoutSidenav_nav">-->
+<!--    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">-->
+<!--        <div class="sb-sidenav-menu">-->
+<!--            <div class="nav">-->
+<!--                <div class="sb-sidenav-menu-heading">Core</div>-->
+<!--                <a class="nav-link" href="index.html">-->
+<!--                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>-->
+<!--                    Dashboard-->
+<!--                </a>-->
+<!--                <div class="sb-sidenav-menu-heading">Faculty</div>-->
+<!--                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts"-->
+<!--                   aria-expanded="false" aria-controls="collapseLayouts">-->
+<!--                    <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>-->
+<!--                    Manage Faculty-->
+<!--                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>-->
+<!--                </a>-->
+<!--                <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"-->
+<!--                     data-bs-parent="#sidenavAccordion">-->
+<!--                    <nav class="sb-sidenav-menu-nested nav">-->
+<!--                        <a class="nav-link" href="/clg_admin/add_faculty">Faculty List</a>-->
+<!--                        <a class="nav-link" href="layout-static.html">Manage Department Admins</a>-->
+<!--&lt;!&ndash;                        <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>&ndash;&gt;-->
+<!--                    </nav>-->
+<!--                </div>-->
+<!--                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"-->
+<!--                   aria-expanded="false" aria-controls="collapsePages">-->
+<!--                    &lt;!&ndash;                    <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>&ndash;&gt;-->
+<!--                    <div class="sb-nav-link-icon"><i class="fa-solid fa-graduation-cap"></i></i></div>-->
+<!--                    Manage Academic-->
+<!--                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>-->
+<!--                </a>-->
+<!--                <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"-->
+<!--                     data-bs-parent="#sidenavAccordion">-->
+<!--                    <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">-->
+<!--&lt;!&ndash;                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"&ndash;&gt;-->
+<!--&lt;!&ndash;                           data-bs-target="#pagesCollapseAuth" aria-expanded="false"&ndash;&gt;-->
+<!--&lt;!&ndash;                           aria-controls="pagesCollapseAuth">&ndash;&gt;-->
+<!--&lt;!&ndash;                            Department Admin&ndash;&gt;-->
+<!--&lt;!&ndash;                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </a>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"&ndash;&gt;-->
+<!--&lt;!&ndash;                             data-bs-parent="#sidenavAccordionPages">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <nav class="sb-sidenav-menu-nested nav">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <a class="nav-link" href="login.html">Login</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <a class="nav-link" href="register.html">Register</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <a class="nav-link" href="password.html">Forgot Password</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </nav>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"&ndash;&gt;-->
+<!--&lt;!&ndash;                           data-bs-target="#pagesCollapseError" aria-expanded="false"&ndash;&gt;-->
+<!--&lt;!&ndash;                           aria-controls="pagesCollapseError">&ndash;&gt;-->
+<!--&lt;!&ndash;                            Error&ndash;&gt;-->
+<!--&lt;!&ndash;                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </a>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"&ndash;&gt;-->
+<!--&lt;!&ndash;                             data-bs-parent="#sidenavAccordionPages">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <nav class="sb-sidenav-menu-nested nav">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <a class="nav-link" href="401.html">401 Page</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <a class="nav-link" href="404.html">404 Page</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <a class="nav-link" href="500.html">500 Page</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </nav>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
 <!--                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"-->
-<!--                           data-bs-target="#pagesCollapseAuth" aria-expanded="false"-->
-<!--                           aria-controls="pagesCollapseAuth">-->
-<!--                            Department Admin-->
-<!--                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>-->
-<!--                        </a>-->
-<!--                        <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"-->
+<!--                           data-bs-target="#pagesCollapsesubjects" aria-expanded="false"-->
+<!--                           aria-controls="pagesCollapsesubjects">-->
+<!--                            Manage Subjects-->
+<!--                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div></a>-->
+<!--                            <div class="collapse" id="pagesCollapsesubjects" aria-labelledby="headingOne"-->
 <!--                             data-bs-parent="#sidenavAccordionPages">-->
 <!--                            <nav class="sb-sidenav-menu-nested nav">-->
-<!--                                <a class="nav-link" href="login.html">Login</a>-->
-<!--                                <a class="nav-link" href="register.html">Register</a>-->
-<!--                                <a class="nav-link" href="password.html">Forgot Password</a>-->
+<!--                                <a class="nav-link" href="/clg_admin/add_regulations">Manage Regulations</a>-->
+<!--                                <a class="nav-link" href="/clg_admin/add_subjects">Manage Subjects</a>-->
+<!--&lt;!&ndash;                                <a class="nav-link" href="404.html">Add Courses</a>&ndash;&gt;-->
 <!--                            </nav>-->
 <!--                        </div>-->
 <!--                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"-->
-<!--                           data-bs-target="#pagesCollapseError" aria-expanded="false"-->
-<!--                           aria-controls="pagesCollapseError">-->
-<!--                            Error-->
-<!--                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>-->
-<!--                        </a>-->
-<!--                        <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"-->
+<!--                           data-bs-target="#pagesCollapsedepartment" aria-expanded="false"-->
+<!--                           aria-controls="pagesCollapsedepartment">-->
+<!--                            Manage Department-->
+<!--                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div></a>-->
+<!--                            <div class="collapse" id="pagesCollapsedepartment" aria-labelledby="headingOne"-->
 <!--                             data-bs-parent="#sidenavAccordionPages">-->
 <!--                            <nav class="sb-sidenav-menu-nested nav">-->
-<!--                                <a class="nav-link" href="401.html">401 Page</a>-->
-<!--                                <a class="nav-link" href="404.html">404 Page</a>-->
-<!--                                <a class="nav-link" href="500.html">500 Page</a>-->
+<!--                                <a class="nav-link" href="404.html">HOD's List</a>-->
+<!--                                <a class="nav-link" href="/clg_admin/manage_department">Departments</a>-->
+<!--&lt;!&ndash;                                <a class="nav-link" href="404.html">Add Courses</a>&ndash;&gt;-->
 <!--                            </nav>-->
 <!--                        </div>-->
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                           data-bs-target="#pagesCollapsesubjects" aria-expanded="false"
-                           aria-controls="pagesCollapsesubjects">
-                            Manage Subjects
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div></a>
-                            <div class="collapse" id="pagesCollapsesubjects" aria-labelledby="headingOne"
-                             data-bs-parent="#sidenavAccordionPages">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="/clg_admin/add_regulations">Manage Regulations</a>
-                                <a class="nav-link" href="/clg_admin/add_subjects">Manage Subjects</a>
-<!--                                <a class="nav-link" href="404.html">Add Courses</a>-->
-                            </nav>
-                        </div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                           data-bs-target="#pagesCollapsedepartment" aria-expanded="false"
-                           aria-controls="pagesCollapsedepartment">
-                            Manage Department
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div></a>
-                            <div class="collapse" id="pagesCollapsedepartment" aria-labelledby="headingOne"
-                             data-bs-parent="#sidenavAccordionPages">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="404.html">HOD's List</a>
-                                <a class="nav-link" href="/clg_admin/manage_department">Departments</a>
-<!--                                <a class="nav-link" href="404.html">Add Courses</a>-->
-                            </nav>
-                        </div>
 
-                    </nav>
-                </div>
-                <div class="sb-sidenav-menu-heading">Addons</div>
-                <a class="nav-link" href="charts.html">
-                    <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                    Charts
-                </a>
-                <a class="nav-link" href="tables.html">
-                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                    Tables
-                </a>
+<!--                    </nav>-->
+<!--                </div>-->
+<!--                <div class="sb-sidenav-menu-heading">Addons</div>-->
+<!--                <a class="nav-link" href="charts.html">-->
+<!--                    <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>-->
+<!--                    Charts-->
+<!--                </a>-->
+<!--                <a class="nav-link" href="tables.html">-->
+<!--                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>-->
+<!--                    Tables-->
+<!--                </a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="sb-sidenav-footer">-->
+<!--            <div class="small">Logged in as:</div>-->
+<!--            Start Bootstrap-->
+<!--        </div>-->
+<!--    </nav>-->
+<!--</div>-->
+<!--{% endblock %}-->
+<!--{% block wrapper %}-->
+
+<!--<h1>Hello Admin</h1>-->
+<!--{% endblock %}-->
+
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+    <div id="content-main">
+        {% if app_list %}
+            <div class="app-list">
+                {% for app in app_list %}
+                    <div class="app-wrapper">
+                        <h2>{{ app.name }}</h2>
+                        <ul class="model-list">
+                            {% for model in app.models %}
+                                <li>
+                                    <a href="{{ model.admin_url }}">{{ model.name }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endfor %}
             </div>
-        </div>
-        <div class="sb-sidenav-footer">
-            <div class="small">Logged in as:</div>
-            Start Bootstrap
-        </div>
-    </nav>
-</div>
-{% endblock %}
-{% block wrapper %}
-
-<h1>Hello Admin</h1>
+        {% else %}
+            <p>No applications are available.</p>
+        {% endif %}
+    </div>
 {% endblock %}

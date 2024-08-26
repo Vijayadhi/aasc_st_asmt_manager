@@ -150,6 +150,7 @@ JAZZMIN_SETTINGS  = {
     "site_title": "AASC-ST-ASMT-MANGER",
     "site_header": "AASC-MANaGER",
     "site_logo": "backend/assets/img/achariya.png",
+
     # "custom_links": {
     #     "clg_admin": [{
     #         "name": "Make Teachers",
@@ -163,6 +164,9 @@ JAZZMIN_SETTINGS  = {
     #     {"name": "Support", "url": "https://github.com/farridav/django-jazzmin/issues", "new_window": True},
     #     {"model": "auth.user"}
     # ],
+}
+JAZZMIN_UI_TWEAKS = {
 
-
+    "theme": "lux",
+    # "dark_mode_theme": "darkly",
 }

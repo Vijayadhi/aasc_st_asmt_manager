@@ -1,0 +1,36 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+    <div id="content-main">
+        {% if has_permission %}
+            {% block dashboard %}
+                <div class="dashboard-module">
+                    <h2>{{ title }}</h2>
+                    {% for module in modules %}
+                        {% if not module.is_empty %}
+                            <div class="module" id="{{ module.get_admin_url }}">
+                                {% block dashboard_item %}{{ module.render }}{% endblock %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endblock %}
+        {% endif %}
+    </div>
+
+    <div class="clearfix"></div>
+
+    {% block charts %}{% load admin_urls %}
+        <div class="chart-module">
+            {% for app in app_list %}
+                {% for model in app.models %}
+                    {% if model.chart %}
+                        <div class="chart-wrapper">
+                            {{ model.chart }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% endblock %}
+{% endblock %}
