@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from dept_faculty.models import Students
+from dept_faculty.models import Students, AddAssessmentScore
 
 
 # Register your models here.
@@ -13,3 +13,4 @@ class StudentInline(admin.StackedInline):
     max_num = 1  # Limit to only one form
     min_num = 1  # Ensure that at least one form is displayed
 admin.site.register(Students)
+admin.site.register(AddAssessmentScore)

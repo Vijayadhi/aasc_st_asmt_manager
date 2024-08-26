@@ -26,9 +26,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
 
+    '192.168.0.110',
+    '127.0.0.1'
     # '192.168.22.168'
-    '.vercel.app',
-    '.now.sh'
+    # '.vercel.app',
+    # '.now.sh'
 ]
 
 # Application definition
@@ -43,7 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main_control',
-    'clg_admin',
+    'clg_admin.apps.ClgAdminConfig',
     'dept_admin',
     'dept_faculty'
 ]

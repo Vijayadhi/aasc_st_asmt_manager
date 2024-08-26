@@ -1,6 +1,8 @@
 from django import forms
+from django.contrib.admin.widgets import FilteredSelectMultiple
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
+from clg_admin.models import Faculty
 from main_control.models import CustomUser
 
 
@@ -29,3 +31,11 @@ class CustomUserChangeForm(UserChangeForm):
     fields = '__all__'
 
     # fields = ('email', 'username', 'mobile_no')
+
+class FacultyAdminForm(forms.ModelForm):
+    class Meta:
+        model = Faculty
+        fields = '__all__'
+        widgets = {
+            'faculty_type': FilteredSelectMultiple("Roles", is_stacked=False),  # Custom widget for multi-select
+        }
