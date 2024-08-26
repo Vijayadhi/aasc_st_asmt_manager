@@ -26,11 +26,15 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
 
-    '192.168.0.110',
-    '127.0.0.1'
     # '192.168.22.168'
     # '.vercel.app',
     # '.now.sh'
+    'aasc-st-asmt-manager.onrender.com',
+    '35.160.120.126',
+    '44.233.151.27',
+    '34.211.200.85',
+    '0.0.0.0/0',
+    '0.0.0.0/0'
 ]
 
 # Application definition
@@ -45,7 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main_control',
-    'clg_admin.apps.ClgAdminConfig',
+    'clg_admin',
     'dept_admin',
     'dept_faculty'
 ]
@@ -134,6 +138,12 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",  # Change this to a different directory, not the one used in STATIC_ROOT
 ]
+
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://aasc-st-asmt-manager.onrender.com',
+]
+
 
 # Directory where Django will collect static files for production
 # STATIC_ROOT = BASE_DIR / 'static'  # This should be different from any in STATICFILES_DIRS
