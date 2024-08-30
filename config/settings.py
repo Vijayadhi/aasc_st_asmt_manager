@@ -148,25 +148,24 @@ AUTH_USER_MODEL = 'main_control.CustomUser'
 
 JAZZMIN_SETTINGS  = {
     "site_title": "AASC-ST-ASMT-MANGER",
-    "site_header": "AASC-MANaGER",
+    "site_header": "AASC-MANAGER",
     "site_logo": "backend/assets/img/achariya.png",
+    "site_brand": "AASC-Administration",
+    "copyright": "Vigneshwaran <br>Your Vision, My Creation ",
 
     # "custom_links": {
     #     "clg_admin": [{
-    #         "name": "Make Teachers",
-    #         "url": "test_index",
+    #         "name": "Manage Internals",
+    #         "url": "/internals/manage_internals/",
     #         "icon": "fas fa-comments",
     #         # "permissions": ["faculty.view_faculty"]
     #     }]
     # },
     "changeform_format": "carousel",
-    # "usermenu_links": [
-    #     {"name": "Support", "url": "https://github.com/farridav/django-jazzmin/issues", "new_window": True},
-    #     {"model": "auth.user"}
-    # ],
+
 }
 JAZZMIN_UI_TWEAKS = {
 
     "theme": "lux",
-    # "dark_mode_theme": "darkly",
+    "dark_mode_theme": "solar",
 }

@@ -1,5 +1,4 @@
 from django.contrib import messages
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 from clg_admin.models import Faculty, Department, Regulation, Subjects, FacultyAdmin
@@ -79,7 +78,6 @@ def add_regulations(request):
             messages.error(request, error_message)
             return render(request, "clg_admin/add_regulations.html", {'error_message': error_message})
 
-        print(regulation_name)
 
         # Check if the department name already exists
         department_exists = Regulation.objects.filter(name=regulation_name).exists()
@@ -117,7 +115,6 @@ def add_subject(request):
         new_subjects.save()
         messages.success(request, 'Subject created successfully!')
         return redirect('add_subject')
-        # return render(request, 'clg_admin/add_subjects.html')  # Or any other view
 
     regulations = Regulation.objects.all()
     subjects = Subjects.objects.all()

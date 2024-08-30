@@ -1,0 +1,38 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+
+<table>
+    <thead>
+        <tr>
+            {% for field in list_display %}
+                <th>{{ field }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for obj in queryset %}
+            <tr>
+                {% for field in list_display %}
+                    <td>
+                        {% if field == 'subject_name' %}
+                            {{ obj.subject.name }}
+                        {% elif field == 'assessment_name' %}
+                            {{ obj.assessment.name }}
+                        {% elif field == 'semester_name' %}
+                            {{ obj.semester.name }}
+                        {% elif field == 'status_display' %}
+                            {{ obj.status.all|join:", " }}
+                        {% elif field == 'score_pdf_link' %}
+                            {{ obj|score_pdf_link }}
+                        {% endif %}
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

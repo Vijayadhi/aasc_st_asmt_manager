@@ -1,0 +1,49 @@
+
+{% extends "admin/change_form.html" %}
+{% load custom_tags %}
+
+{% block content %}
+<!--{{course_id}}-->
+<!--{{batch_id}}-->
+
+<!--{{form.as_p}}-->
+<!--{{students}}-->
+
+<div class="card-body bg-light align-content-lg-center">
+{% if students %}
+
+<!--<h4>{{ student.user.email }}</h4>-->
+<form action="" method="POST">
+
+    {% csrf_token %}
+    <select name="semester">
+        {% for type in semester%}
+        <option value={{type.id}}>{{type.semester}}</option>
+        {% endfor %}
+    </select>
+
+    <select name="assmt_type">
+        {% for type in assessment_type%}
+        <option value={{type.id}}>{{type.name}}</option>
+        {% endfor %}
+    </select>
+
+    <br><br>
+    {% for student in students %}
+    REG.No: <input type="text" value={{student.reg_num}} name="std_reg_num" readonly>
+
+    Name: <input type="text" name="std_name" id="" value={{ student.user.name }} readonly>
+
+    Mark: <input type="number" name="mark" required><br><br>
+
+    {% endfor %}
+
+
+    <input type="submit" value="Submit">
+</form>
+<!--<p>{{ student.course.name }} - {{ student.batch.batch_from_date }}-{{student.batch.batch_to_date}}</p>-->
+{% else %}
+<p>No students found for this course and batch.</p>
+{% endif %}
+    </div>
+{% endblock %}

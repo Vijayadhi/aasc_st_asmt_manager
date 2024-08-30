@@ -1,36 +1,232 @@
 {% extends "admin/base_site.html" %}
 
 {% block content %}
-    <div id="content-main">
-        {% if has_permission %}
-            {% block dashboard %}
-                <div class="dashboard-module">
-                    <h2>{{ title }}</h2>
-                    {% for module in modules %}
-                        {% if not module.is_empty %}
-                            <div class="module" id="{{ module.get_admin_url }}">
-                                {% block dashboard_item %}{{ module.render }}{% endblock %}
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            {% endblock %}
-        {% endif %}
+<div class="dashboard-containter" >
+    <h2 style="text-align: center;">Dasboard Design Under Progress</h2>
+        <h2>You Can use other features of this site</h2>
+
+    <p style="text-align: center;">will be available soon</p>
+
+</div>
+
+<div class="dashboard-container">
+    <h3>{{title}}</h3>
+
+
+    <div class="card card-danger">
+        <div class="card-header">
+            <h3 class="card-title">Pie Chart</h3>
+
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <canvas id="pieChart"
+                    style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+        </div>
+        <!-- /.card-body -->
     </div>
 
-    <div class="clearfix"></div>
 
-    {% block charts %}{% load admin_urls %}
-        <div class="chart-module">
-            {% for app in app_list %}
-                {% for model in app.models %}
-                    {% if model.chart %}
-                        <div class="chart-wrapper">
-                            {{ model.chart }}
-                        </div>
-                    {% endif %}
-                {% endfor %}
-            {% endfor %}
+    <div class="card card-info">
+        <div class="card-header">
+            <h3 class="card-title">Line Chart</h3>
+
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
         </div>
-    {% endblock %}
+        <div class="card-body">
+            <div class="chart">
+                <canvas id="lineChart"
+                        style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+            </div>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <div class="card bg-gradient-success">
+        <div class="card-header border-0">
+            <h3 class="card-title">
+                <i class="far fa-calendar-alt"></i>
+                Calendar
+            </h3>
+            <!-- tools card -->
+            <div class="card-tools">
+                <!-- button with a dropdown -->
+                <div class="btn-group">
+                    <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#" class="dropdown-item">Add new event</a></li>
+                        <li><a href="#" class="dropdown-item">Clear events</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a href="#" class="dropdown-item">View calendar</a></li>
+                    </ul>
+                </div>
+                <button type="button" class="btn btn-success btn-sm" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-success btn-sm" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <!-- /. tools -->
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body pt-0">
+            <!--The calendar -->
+            <div id="calendar" style="width: 100%"></div>
+        </div>
+    </div>
+    <!-- Default admin dashboard content -->
+    {{ block.super }}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var ctx = document.getElementById('pieChart').getContext('2d');
+            var pieChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'], // Labels for the chart segments
+                    datasets: [{
+                        label: 'My Pie Chart',
+                        data: [12, 19, 3, 5, 2, 3], // Data for the chart segments
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (tooltipItem) {
+                                    return tooltipItem.label + ': ' + tooltipItem.raw;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var ctx = document.getElementById('lineChart').getContext('2d');
+            var lineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'], // X-axis labels
+                    datasets: [{
+                        label: 'Monthly Sales',
+                        data: [10, 25, 15, 30, 20, 35, 40], // Data for the Y-axis
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1,
+                        fill: true, // Set to false if you don't want to fill the area under the line
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (tooltipItem) {
+                                    return tooltipItem.label + ': ' + tooltipItem.raw;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true
+                        },
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.0.0/main.min.js'></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                events: [
+                    {
+                        title: 'Meeting',
+                        start: '2024-08-15T10:00:00',
+                        end: '2024-08-15T12:00:00'
+                    },
+                    {
+                        title: 'Conference',
+                        start: '2024-08-20',
+                        end: '2024-08-22'
+                    }
+                ],
+                editable: true,
+                selectable: true,
+                select: function (info) {
+                    alert('Selected ' + info.startStr + ' to ' + info.endStr);
+                },
+                eventClick: function (info) {
+                    alert('Event: ' + info.event.title);
+                }
+            });
+
+            calendar.render();
+        });
+    </script>
+
+</div>
+
+
+
 {% endblock %}

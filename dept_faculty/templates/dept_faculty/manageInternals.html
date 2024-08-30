@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Internal</title>
+</head>
+<body>
+<h1>Manage Internal</h1>
+<h6>{{ current_user }}</h6>
+{% for allocation in subjects_allocated %}
+<form action="" method="post">
+    <!-- Adding course_id and batch_id as query parameters in the href -->
+<!--    <a href="{% url 'add_score' %}?{% with course_id=allocation.course.id batch_id=allocation.batch.id %}{{ course_id|urlencode }}&{{ batch_id|urlencode }}{% endwith %}">-->
+                <a href="/internals/add_score/?course_id={{ allocation.course.id|urlencode}}&batch_id={{ allocation.batch.id|urlencode}}&subject_id={{allocation.subject.id|urlencode}}">
+        {{ allocation.course.name }} {{ allocation.subject.name }} {{ allocation.batch }}
+        <input type="button" value="submit">
+    </a><br>
+</form>
+{% endfor %}
+</body>
+</html>

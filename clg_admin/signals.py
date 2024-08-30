@@ -12,13 +12,10 @@ def assign_groups_to_user(sender, instance, action, **kwargs):
     if action in ['post_add', 'post_remove', 'post_clear']:
         # Clear all existing groups
         instance.user.groups.clear()
-        print(instance.faculty_type)
 
         # Assign groups based on faculty_type
         for role in instance.faculty_type.all():
-            print(role)
             group_name = role.name  # Assuming FacultyRoles has a 'name' field
-            print(group_name)
             group, created = Group.objects.get_or_create(name=group_name)
             instance.user.groups.add(group)
 

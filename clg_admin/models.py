@@ -120,3 +120,16 @@ class AssessmentType(models.Model):
 
     class Meta:
         db_table = 'assessment_type'
+
+class LeaveLetter(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE)
+    date = models.DateField()
+    created = models.DateField(auto_now_add=True)
+    subject = models.CharField(max_length=200, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.faculty.user.name} - {self.subject} - {self.date}"
+    class Meta:
+        db_table = 'leave_letter'

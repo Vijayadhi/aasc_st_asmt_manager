@@ -1,10 +1,6 @@
-from django.contrib import admin, messages
-
-from main_control.forms import FacultyAdminForm
-from main_control.models import CustomUser
-from .models import Subjects, Department, FacultyAdmin, Semester, Regulation, AssessmentType, Faculty, Batch, \
-    FacultyRoles
-from django.contrib.auth.models import Group
+from django.contrib import admin
+from .forms import LeaveLetterAdminForm
+from .models import Subjects, Department, FacultyAdmin, Semester, Regulation, AssessmentType, Faculty, Batch, LeaveLetter
 
 
 class FAI(admin.StackedInline):
@@ -16,13 +12,6 @@ class FAI(admin.StackedInline):
     max_num = 1
     min_num = 1
 
-# class BatchInline(admin.StackedInline):
-#     model = Batch
-#     can_delete = False
-#     verbose_name_plural = 'Batch'
-#     extra = 0
-#     max_num = 1
-#     min_num = 1
 
 class Faculty_Admin(admin.ModelAdmin):
     list_display = ['get_dpt_admin_username', 'get_department_name', ]
@@ -119,11 +108,38 @@ class DepartmentAdmin(admin.ModelAdmin):
     # Optional: Specify the ordering of the fields in the list view
     ordering = ('name',)
     inlines = [FAI]
+
+
+class LeaveLetterAdmin(admin.ModelAdmin):
+    form = LeaveLetterAdminForm
+    readonly_fields = ('faculty',)  # Make faculty read-only
+
+    def get_form(self, request, obj=None, **kwargs):
+        # Pass the request to the form
+        form = super().get_form(request, obj, **kwargs)
+        form.request = request
+        return form
+
+    def save_form(self, request, form, change):
+        # Set the faculty field to the current user's faculty
+        if not change:
+            user_faculty = Faculty.objects.filter(user=request.user).first()
+            if user_faculty:
+
+                form.instance.faculty = user_faculty
+        return super().save_form(request, form, change)
+
+    def has_change_permission(self, request, obj=None):
+        # Allow change permissions only if the faculty is the current user's
+        if obj and obj.faculty.user != request.user:
+            return False
+        return super().has_change_permission(request, obj)
+
+
 admin.site.register(Subjects)
 admin.site.register(Department, DepartmentAdmin)
-# admin.site.register(FacultyAdmin, Faculty_Admin)
 admin.site.register(Semester)
 admin.site.register(Regulation)
 admin.site.register(AssessmentType)
 admin.site.register(Batch)
-admin.site.register(FacultyRoles)
+admin.site.register(LeaveLetter, LeaveLetterAdmin)

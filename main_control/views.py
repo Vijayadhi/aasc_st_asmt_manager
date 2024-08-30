@@ -1,9 +1,10 @@
 from django.contrib import messages
+from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.models import Group
-from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 
+from clg_admin.models import Faculty
 from main_control.models import CustomUser
 
 
@@ -63,3 +64,15 @@ def user_login(request):
         except:
             raise ValueError("Enter Valid Username or Password")
     return render(request, 'backend/login.html')
+
+
+@staff_member_required
+def admin_dashboard(request):
+    total_faculties = Faculty.objects.count()
+    total_students = CustomUser.objects.filter(is_staff=False).count()
+
+    context = {
+        'total_faculties': total_faculties,
+        'total_students': total_students,
+    }
+    return render(request, 'admin/dashboard.html', context)

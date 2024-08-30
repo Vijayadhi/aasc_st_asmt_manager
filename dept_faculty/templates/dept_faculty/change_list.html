@@ -1,0 +1,56 @@
+{% extends "admin/change_list.html" %}
+{% load static %}
+
+{% block content %}
+{% block object_tools %}
+{% if has_add_permission %}
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        var pageActions = document.querySelector('.page-actions');
+        if (pageActions) {
+            // Clear all child elements
+            while (pageActions.firstChild) {
+                pageActions.removeChild(pageActions.firstChild);
+            }
+        }
+    });
+</script>
+{% endif %}
+{% endblock %}
+
+<!-- Your custom content here -->
+<div class="card-body bg-light">
+    {{ block.super }}
+
+    {% if students %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Course</th>
+            <th scope="col">Subject</th>
+            <th scope="col">Batch</th>
+            <th scope="col">Semester</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for obj in subjects_allocated %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ obj.course.name }}</td>
+            <td>{{ obj.subject.name }}</td>
+            <td>{{ obj.batch }}</td>
+            <td>{{ obj.semester.semester }}</td>
+            <td>
+                <a href="add/?course_id={{ obj.course.id|urlencode }}&batch_id={{ obj.batch.id|urlencode }}&subject_id={{ obj.id|urlencode }}">
+                    <button type="submit" class="btn btn-outline-primary btn-sm">Add</button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</div>
+{% endblock %}

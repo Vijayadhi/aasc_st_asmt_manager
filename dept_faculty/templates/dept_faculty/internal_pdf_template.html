@@ -1,0 +1,118 @@
+{% load custom_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: "Times New Roman";
+            font-size: 12px;
+            margin: 0;
+            padding: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-transform: uppercase;
+            margin-bottom: 80px; /* Ensure space for the signature and page number */
+        }
+
+        th, td {
+            border: 1px solid #000;
+            padding: 4px; /* Reduced padding for smaller row height */
+            text-align: center;
+            font-size: 11px; /* Reduced font size if needed */
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .mark_list_title {
+            text-align: center;
+            font-size: 14px;
+            text-transform: uppercase;
+            margin: 10px 0; /* Adjust margin if needed */
+        }
+
+        h1 {
+            text-transform: uppercase;
+            margin: 10px 0; /* Adjust margin if needed */
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 5px; /* Adjust spacing between rows if needed */
+        }
+
+        .left {
+            text-align: left;
+        }
+
+        .right {
+            text-align: right;
+        }
+
+    </style>
+</head>
+<body>
+<div class="logo">
+    <img src="{{ logo_url }}" alt="Logo">
+</div>
+<br>
+<h1 class="mark_list_title">{{ assessment.name|upper }} {{ month_year|upper }}</h1>
+
+<!-- Row for Degree/Branch and Batch -->
+<div class="row">
+    <div class="left">
+        <h3 style="margin: 0;">DEGREE/BRANCH: {{ course.name|upper }}</h3>
+    </div>
+    <div class="right">
+        <h3 style="margin: 0;">Batch: {{ batch.batch_from_date|upper }} - {{ batch.batch_to_date|upper }}</h3>
+    </div>
+</div>
+
+<!-- Row for Subject and Semester -->
+<div class="row">
+    <div class="left">
+        <h3 style="margin: 0;">Subject: {{ subject.subject.name|upper }}</h3>
+    </div>
+    <div class="right">
+        <h3 style="margin: 0;">Semester: {{ semester.semester|upper }}</h3>
+    </div>
+</div>
+
+<table>
+    <thead>
+    <tr>
+        <th style="width: 5%;">S.NO</th>
+        <th style="width: 20%;">REGISTER NUMBER</th>
+        <th>STUDENT NAME</th>
+        <th style="width: 10%;">MARK</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for student_id, score in scores.items %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ student_id|upper }}</td>
+        {% with student_name=student_dict|get_item:student_id %}
+        <td>{{ student_name|upper }}</td>
+        {% endwith %}
+        <td>{{ score|upper }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+<h5 style="text-align: left;">Signature of the Faculty <br><br><br><br><br>Signature of the HOD</h5>
+<h5 style="text-align: right;">Signature of the Class Tutor <br><br><br><br><br>Signature of Principal</h5>
+
+
+</body>
+</html>

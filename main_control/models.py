@@ -36,7 +36,6 @@ class CustomUser(AbstractUser):
                                MinValueValidator(calculate_min_dob()),
                                MaxValueValidator(calculate_max_dob())
                            ])
-    # dob = models.DateField(null=True, blank=True, help_text=f'eg. {str(timezone.now().date())}',)
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ['mobile_no']
     objects = CustomUserManager()
@@ -44,24 +43,7 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.name
 
-    #
-    # def get_model_perms(self, request):
-    #     """
-    #     Return empty perms dict for users who are not in a specific group.
-    #     """
-    #     perms = super().get_model_perms(request)
-    #
-    #     # Custom logic based on user's group
-    #     if request.user.groups.filter(name='College Admin').exists():
-    #         verbose_name = _('Faculty Member (College Admin)')
-    #         verbose_name_plural = _('Faculty Members (College Admin)')
-    #     elif request.user.groups.filter(name='DepartmentAdmin').exists():
-    #         self.verbose_name = _('Faculty Member (Dept Admin)')
-    #         self.verbose_name_plural = _('Faculty Members (Dept Admin)')
-    #     else:
-    #         perms = {}  # Hide the model completely if the user doesn't belong to these groups
-    #
-    #     return perms
+
     class Meta:
         verbose_name = _('Manage Profile')
         verbose_name_plural = _('Manage Profiles')
