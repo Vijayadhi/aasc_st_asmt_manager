@@ -26,11 +26,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
 
-    '192.168.0.110',
-    '127.0.0.1'
-    # '192.168.22.168'
-    # '.vercel.app',
-    # '.now.sh'
+    'aasc-st-asmt-manager.onrender.com',
+    '35.160.120.126',
+    '44.233.151.27',
+    '34.211.200.85',
+    '0.0.0.0/0',
+    '0.0.0.0/0'
 ]
 
 # Application definition
@@ -169,3 +170,7 @@ JAZZMIN_UI_TWEAKS = {
     "theme": "lux",
     "dark_mode_theme": "solar",
 }
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://aasc-st-asmt-manager.onrender.com',
+]
