@@ -80,6 +80,6 @@ This project is licensed under the MIT License.
 **Developer**: Vigneshwaran J  
 - **Email**: [venerablevignesh@gmail.com](mailto:venerablevignesh@gmail.com)  
 - **GitHub**: [https://github.com/Vijayadhi](https://github.com/Vijayadhi)
-- **Portfolio**: [https://portfolio-vigneshwaran.netlify.app])
+- **Portfolio**: [https://portfolio-vigneshwaran.netlify.app](https://portfolio-vigneshwaran.netlify.app)
 
 
